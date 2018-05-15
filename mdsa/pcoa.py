@@ -90,10 +90,6 @@ def pcoa(distance_matrix, algorithm, num_dimensions_out=10):
     eigenvectors = np.array(eigenvectors)
     eigenvalues = np.array(eigenvalues)
 
-    # Ensure eigenvectors are normalized
-    eigenvectors = np.apply_along_axis(lambda vec: vec / np.linalg.norm(vec),
-                                       axis=1, arr=eigenvectors)
-
     # Generate axis labels for output
     axis_labels = ['PC%d' % i for i in range(1, len(eigenvectors) + 1)]
     axis_labels = axis_labels[:num_dimensions_out]
