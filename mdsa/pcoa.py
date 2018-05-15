@@ -166,6 +166,13 @@ def pcoa(distance_matrix, algorithm, num_dimensions_out=10):
         # operation.
         eigenvectors = eigenvectors * np.sqrt(eigenvalues)
 
+        # Calculate the array of proportion of variance explained
+        # proportion_explained = eigenvalues / eigenvalues.sum()
+        sum_eigenvalues = np.trace(centered_dm)
+
+        # Calculate the array of proportion of variance explained
+        proportion_explained = eigenvalues / sum_eigenvalues
+
         # Now remove the dimensions with the least information
         # Only select k (num_dimensions_out) first eigenvectors
         # and their corresponding eigenvalues from the sorted array
@@ -174,9 +181,7 @@ def pcoa(distance_matrix, algorithm, num_dimensions_out=10):
         if len(eigenvalues) > num_dimensions_out:
             eigenvectors = eigenvectors[:, :num_dimensions_out]
             eigenvalues = eigenvalues[:num_dimensions_out]
-
-        # Calculate the array of proportion of variance explained
-        proportion_explained = eigenvalues / eigenvalues.sum()
+            proportion_explained = proportion_explained[:num_dimensions_out]
 
         return OrdinationResults(
             short_method_name='PCoA',
