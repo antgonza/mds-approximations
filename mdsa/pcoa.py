@@ -64,7 +64,7 @@ def pcoa(distance_matrix, algorithm, num_dimensions_out=10):
        If the distance is not euclidean (for example if it is a
        semimetric and the triangle inequality doesn't hold),
        negative eigenvalues can appear. There are different ways
-       to deal with that problem (see Legendre & Legendre 1998, \S
+       to deal with that problem (see Legendre & Legendre 1998, \\S
        9.2.3), but none are currently implemented here.
        However, a warning is raised whenever negative eigenvalues
        appear, allowing the user to decide if they can be safely
